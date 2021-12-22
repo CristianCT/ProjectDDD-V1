@@ -3,6 +3,7 @@ package profesor;
 import generico.*;
 import profesor.values.*;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -31,32 +32,55 @@ public class Profesor extends AggregateRoot<IdProfesor> {
         this.asignaturas.removeIf(asignatura -> asignatura.getId().equals(idAsignatura));
     }
 
-    public void remplazarProyecto(){
-
+    public void remplazarProyecto(Set<Objetivo> objetivos, Metodologia metodologia){
+        this.proyectoDocente = new ProyectoDocente(new IdProyecto(), objetivos, metodologia);
     }
 
-    public void agregarObjetivoAProyectoDocente(){
-
+    public void agregarObjetivoAProyectoDocente(String objetivo){
+        this.proyectoDocente.objetivos().add(new Objetivo(objetivo));
     }
 
-    public void remplazarMetodologiaDeProyectoDocente(){
-
+    public void remplazarMetodologiaDeProyectoDocente(String metodologia){
+        this.proyectoDocente.remplazarMetodologia(new Metodologia(metodologia));
     }
 
-    public void remplazarContenidoDeAsignatura(){
-
+    public void remplazarContenidoDeAsignatura(IdAsignatura idAsignatura, Contenido contenido){
+        this.asignaturas.stream()
+                .filter(asignatura -> asignatura.equals(idAsignatura))
+                .forEach(asignatura -> asignatura.remplazarContenido(contenido));
     }
 
-    public void modificarFechaInicioActividad(){
-
+    public void modificarFechaActividad(IdAsignatura idAsignatura, IdActividad idActividad, LocalDateTime fecha){
+        this.asignaturas.stream()
+                .filter(asignatura -> asignatura.equals(idAsignatura))
+                .forEach(asignatura -> asignatura.actividades().stream()
+                        .filter(actividad -> actividad.equals(idActividad))
+                        .forEach(actividad -> actividad.modificarFecha(new Fecha(fecha)))
+                );
     }
 
-    public void modificarFechaLimiteActividad(){
-
+    public void modificarPlazoActividad(IdAsignatura idAsignatura, IdActividad idActividad, Double plazo){
+        this.asignaturas.stream()
+                .filter(asignatura -> asignatura.equals(idAsignatura))
+                .forEach(asignatura -> asignatura.actividades().stream()
+                        .filter(actividad -> actividad.equals(idActividad))
+                        .forEach(actividad -> actividad.modificarPlazo(new Plazo(plazo)))
+                );
     }
 
-    public void remplazarContenidoActividad(){
+    public void remplazarCuestionarioActividad(IdAsignatura idAsignatura, IdActividad idActividad, Cuestionario cuestionario){
+        this.asignaturas.stream()
+                .filter(asignatura -> asignatura.equals(idAsignatura))
+                .forEach(asignatura -> asignatura.actividades().stream()
+                        .filter(actividad -> actividad.equals(idActividad))
+                        .forEach(actividad -> actividad.remplazarCuestionario(cuestionario))
+                );
+    }
 
+    public void agregarTemaAAsignatura(IdAsignatura idAsignatura, String tema){
+        this.asignaturas.stream()
+                .filter(asignatura -> asignatura.equals(idAsignatura))
+                .forEach(asignatura -> asignatura.remplazarContenido(asignatura.contenido().agregarTema(new Tema(tema))));
     }
 
     public Nombre nombre() {

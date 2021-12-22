@@ -11,10 +11,9 @@ import java.util.Set;
 
 public class Asignatura extends Entity<IdAsignatura> {
 
-    private Nombre nombre;
+    private final Nombre nombre;
     private Set<Actividad> actividades;
     private Contenido contenido;
-
 
     public Asignatura(IdAsignatura idAsignatura, Nombre nombre, Contenido contenido) {
         super(idAsignatura);

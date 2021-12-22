@@ -1,17 +1,15 @@
 package profesor.values;
 
-import generico.Descripcion;
-
 import java.io.Serializable;
 import java.util.Objects;
 
-public final class Tema implements Serializable {
+public final class Objetivo implements Serializable {
     private final String value;
 
-    public Tema(String value) {
-        this.value = Objects.requireNonNull(value, "EL Tema no puede ser null");
+    public Objetivo(String value) {
+        this.value = Objects.requireNonNull(value, "El Objetivo no puede ser null");
         if(this.value.isBlank()){
-            throw new IllegalArgumentException("Debe ser un Tema valido");
+            throw new IllegalArgumentException("Debe ser un Objetivo valido");
         }
     }
 
@@ -23,7 +21,7 @@ public final class Tema implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Tema that = (Tema) o;
+        Objetivo that = (Objetivo) o;
         return Objects.equals(value, that.value);
     }
 

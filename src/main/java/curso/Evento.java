@@ -2,6 +2,7 @@ package curso;
 
 import curso.values.*;
 import generico.Entity;
+import generico.Titulo;
 
 public class Evento extends Entity<IdEvento> {
 

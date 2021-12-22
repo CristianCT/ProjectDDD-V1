@@ -1,8 +1,9 @@
 package generico;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public final class Descripcion {
+public abstract class Descripcion implements Serializable {
     private final String value;
 
     public Descripcion(String value) {

@@ -1,21 +1,19 @@
 package profesor.values;
 
-import generico.Descripcion;
-
 import java.io.Serializable;
 import java.util.Objects;
 
-public final class Tema implements Serializable {
-    private final String value;
+public final class Plazo implements Serializable {
+    private final Double value;
 
-    public Tema(String value) {
-        this.value = Objects.requireNonNull(value, "EL Tema no puede ser null");
-        if(this.value.isBlank()){
-            throw new IllegalArgumentException("Debe ser un Tema valido");
+    public Plazo(Double value) {
+        this.value = Objects.requireNonNull(value, "El Plazo no puede ser null");
+        if(this.value < 1){
+            throw new IllegalArgumentException("Debe ser un Plazo valido");
         }
     }
 
-    public String getValue() {
+    public Double getValue() {
         return value;
     }
 
@@ -23,7 +21,7 @@ public final class Tema implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Tema that = (Tema) o;
+        Plazo that = (Plazo) o;
         return Objects.equals(value, that.value);
     }
 
