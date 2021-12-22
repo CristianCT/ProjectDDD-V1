@@ -4,6 +4,7 @@ import estudiante.values.*;
 import generico.*;
 import profesor.values.IdActividad;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -29,8 +30,16 @@ public class Estudiante extends AggregateRoot<IdEstudiante> {
         this.entregas.add(new Entrega(new IdEntrega(), idActividad));
     }
 
-    public void agregarEntrega(IdActividad idActividad, Tipo tipo, Solucion solucion){
-        this.entregas.add(new Entrega(new IdEntrega(), idActividad, tipo, solucion));
+    public void agregarEntrega(IdActividad idActividad, Solucion solucion){
+        this.entregas.add(new Entrega(new IdEntrega(), idActividad, solucion));
+    }
+
+    public void agregarObservacion(Tipo tipo, Descripcion descripcion, Valoracion valoracion){
+        this.observaciones.add(new Observacion(new IdObservacion(), tipo, descripcion, valoracion));
+    }
+
+    public void agregarObservacion(Tipo tipo, Descripcion descripcion){
+        this.observaciones.add(new Observacion(new IdObservacion(), tipo, descripcion));
     }
 
     public void adjuntarSolucionAEntrega(IdEntrega idEntrega, Solucion solucion){
@@ -39,12 +48,16 @@ public class Estudiante extends AggregateRoot<IdEstudiante> {
                 .forEach(entrega -> entrega.adjuntarSolucion(solucion));
     }
 
-    public void asignarCalificacionObservacion(){
-        // TODO: DESARROLLO DEL METODO AL CREAR LA CLASE NECESARIA
+    public void asignarValoracionObservacion(IdObservacion idObservacion, Double valor){
+        this.observaciones.stream()
+                .filter(observacion -> observacion.equals(idObservacion))
+                .forEach(observacion -> observacion.asignarValoracion(new Valoracion(valor)));
     }
 
-    public void remplazarCalificacionObservacion(){
-        // TODO: DESARROLLO DEL METODO AL CREAR LA CLASE NECESARIA
+    public void adjuntarArchivoASolucion(IdEntrega idEntrega, File archivo){
+        this.entregas.stream()
+                .filter(entrega -> entrega.equals(idEntrega))
+                .forEach(entrega -> entrega.adjuntarSolucion(entrega.solucion().adjuntarArchivo(archivo)));
     }
 
     public Nombre nombre() {

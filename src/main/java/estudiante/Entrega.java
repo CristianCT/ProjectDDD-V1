@@ -3,7 +3,6 @@ package estudiante;
 import profesor.values.IdActividad;
 import estudiante.values.IdEntrega;
 import estudiante.values.Solucion;
-import generico.Tipo;
 import generico.Entity;
 
 import java.util.Objects;
@@ -18,7 +17,7 @@ public class Entrega extends Entity<IdEntrega> {
         this.idActividad = Objects.requireNonNull(idActividad, "El ID de la actividad no puede ser null");
     }
 
-    public Entrega(IdEntrega id, IdActividad idActividad, Tipo tipo, Solucion solucion) {
+    public Entrega(IdEntrega id, IdActividad idActividad, Solucion solucion) {
         super(id);
         this.idActividad = Objects.requireNonNull(idActividad, "El ID de la actividad no puede ser null");
         this.solucion = Objects.requireNonNull(solucion, "La solución no puede ser null");

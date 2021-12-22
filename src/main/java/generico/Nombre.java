@@ -8,7 +8,7 @@ public final class Nombre implements Serializable {
 
     public Nombre(String value) {
         this.value = Objects.requireNonNull(value, "El nombre no puede ser null");
-        if(this.value.length() < 3){
+        if(this.value.length() < 3 || this.value.isBlank()){
             throw new IllegalArgumentException("Debe ser un nombre valido");
         }
     }
