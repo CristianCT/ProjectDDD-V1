@@ -1,6 +1,5 @@
 package profesor.values;
 
-import estudiante.values.IdEntrega;
 import generico.Id;
 
 public class IdActividad extends Id {
