@@ -44,19 +44,19 @@ public class Estudiante extends AggregateRoot<IdEstudiante> {
 
     public void adjuntarSolucionAEntrega(IdEntrega idEntrega, Solucion solucion){
         this.entregas.stream()
-                .filter(entrega -> entrega.equals(idEntrega))
+                .filter(entrega -> entrega.getId().equals(idEntrega))
                 .forEach(entrega -> entrega.adjuntarSolucion(solucion));
     }
 
     public void asignarValoracionObservacion(IdObservacion idObservacion, Double valor){
         this.observaciones.stream()
-                .filter(observacion -> observacion.equals(idObservacion))
+                .filter(observacion -> observacion.getId().equals(idObservacion))
                 .forEach(observacion -> observacion.asignarValoracion(new Valoracion(valor)));
     }
 
     public void adjuntarArchivoASolucion(IdEntrega idEntrega, File archivo){
         this.entregas.stream()
-                .filter(entrega -> entrega.equals(idEntrega))
+                .filter(entrega -> entrega.getId().equals(idEntrega))
                 .forEach(entrega -> entrega.adjuntarSolucion(entrega.solucion().adjuntarArchivo(archivo)));
     }
 

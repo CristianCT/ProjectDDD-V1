@@ -10,7 +10,7 @@ public final class GradoAcademico implements Serializable {
     public GradoAcademico(Double value) {
         this.value = Objects.requireNonNull(value, "EL GradoAcademico no puede ser null");
         if(this.value < LocalDateTime.now().getYear()){
-            throw new IllegalArgumentException("Debe ser un GradoAcademico validO");
+            throw new IllegalArgumentException("Debe ser un GradoAcademico valido");
         }
     }
 

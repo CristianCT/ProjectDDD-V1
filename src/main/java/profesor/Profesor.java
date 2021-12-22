@@ -46,40 +46,40 @@ public class Profesor extends AggregateRoot<IdProfesor> {
 
     public void remplazarContenidoDeAsignatura(IdAsignatura idAsignatura, Contenido contenido){
         this.asignaturas.stream()
-                .filter(asignatura -> asignatura.equals(idAsignatura))
+                .filter(asignatura -> asignatura.getId().equals(idAsignatura))
                 .forEach(asignatura -> asignatura.remplazarContenido(contenido));
     }
 
     public void modificarFechaActividad(IdAsignatura idAsignatura, IdActividad idActividad, LocalDateTime fecha){
         this.asignaturas.stream()
-                .filter(asignatura -> asignatura.equals(idAsignatura))
+                .filter(asignatura -> asignatura.getId().equals(idAsignatura))
                 .forEach(asignatura -> asignatura.actividades().stream()
-                        .filter(actividad -> actividad.equals(idActividad))
+                        .filter(actividad -> actividad.getId().equals(idActividad))
                         .forEach(actividad -> actividad.modificarFecha(new Fecha(fecha)))
                 );
     }
 
     public void modificarPlazoActividad(IdAsignatura idAsignatura, IdActividad idActividad, Double plazo){
         this.asignaturas.stream()
-                .filter(asignatura -> asignatura.equals(idAsignatura))
+                .filter(asignatura -> asignatura.getId().equals(idAsignatura))
                 .forEach(asignatura -> asignatura.actividades().stream()
-                        .filter(actividad -> actividad.equals(idActividad))
+                        .filter(actividad -> actividad.getId().equals(idActividad))
                         .forEach(actividad -> actividad.modificarPlazo(new Plazo(plazo)))
                 );
     }
 
     public void remplazarCuestionarioActividad(IdAsignatura idAsignatura, IdActividad idActividad, Cuestionario cuestionario){
         this.asignaturas.stream()
-                .filter(asignatura -> asignatura.equals(idAsignatura))
+                .filter(asignatura -> asignatura.getId().equals(idAsignatura))
                 .forEach(asignatura -> asignatura.actividades().stream()
-                        .filter(actividad -> actividad.equals(idActividad))
+                        .filter(actividad -> actividad.getId().equals(idActividad))
                         .forEach(actividad -> actividad.remplazarCuestionario(cuestionario))
                 );
     }
 
     public void agregarTemaAAsignatura(IdAsignatura idAsignatura, String tema){
         this.asignaturas.stream()
-                .filter(asignatura -> asignatura.equals(idAsignatura))
+                .filter(asignatura -> asignatura.getId().equals(idAsignatura))
                 .forEach(asignatura -> asignatura.remplazarContenido(asignatura.contenido().agregarTema(new Tema(tema))));
     }
 

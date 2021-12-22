@@ -65,19 +65,19 @@ public class Curso extends AggregateRoot<IdCurso> {
 
     public void adjuntarEvidenciaAEvento(IdEvento idEvento, String titulo, File documento){
         this.eventos.stream()
-                .filter(evento -> evento.equals(idEvento))
+                .filter(evento -> evento.getId().equals(idEvento))
                 .forEach(evento -> evento.adjuntarEvidencia(new Evidencia(new Titulo(titulo), documento)));
     }
 
     public void asignarValoracionACalificacion(IdCalificacion idCalificacion, Double valoracion){
         this.calificaciones.stream()
-                .filter(calificacion -> calificacion.equals(idCalificacion))
+                .filter(calificacion -> calificacion.getId().equals(idCalificacion))
                 .forEach(calificacion -> calificacion.asignarValoracion(new Valoracion(valoracion)));
     }
 
     public void agregarAclaracionACalificacion(IdCalificacion idCalificacion, String aclaracion){
         this.calificaciones.stream()
-                .filter(calificacion -> calificacion.equals(idCalificacion))
+                .filter(calificacion -> calificacion.getId().equals(idCalificacion))
                 .forEach(calificacion -> calificacion.agregarAclaracion(new Aclaracion(aclaracion)));
     }
 

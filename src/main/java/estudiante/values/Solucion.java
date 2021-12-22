@@ -1,7 +1,5 @@
 package estudiante.values;
 
-import generico.Apellidos;
-
 import java.io.File;
 import java.io.Serializable;
 import java.util.Objects;
@@ -30,7 +28,10 @@ public final class Solucion implements Serializable {
     }
 
     public Solucion adjuntarArchivo(File archivo){
-        return new Solucion(this.titulo, this.anotacion, archivo);
+        return new Solucion(
+                this.titulo,
+                this.anotacion,
+                Objects.requireNonNull(archivo, "El archivo no puede ser null"));
     }
 
     public String getTitulo() {

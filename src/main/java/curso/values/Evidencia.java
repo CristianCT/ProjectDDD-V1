@@ -4,6 +4,7 @@ import generico.Titulo;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.Objects;
 
 public final class Evidencia implements Serializable {
     private final Titulo titulo;
@@ -20,6 +21,6 @@ public final class Evidencia implements Serializable {
     }
 
     public Evidencia adjuntarDocuemnto(File documento){
-        return new Evidencia(this.titulo, documento);
+        return new Evidencia(this.titulo, Objects.requireNonNull(documento, "El documento no puede ser null"));
     }
 }
