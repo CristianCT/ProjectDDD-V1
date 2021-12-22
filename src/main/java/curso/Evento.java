@@ -4,20 +4,33 @@ import curso.values.*;
 import generico.Entity;
 import generico.Titulo;
 
+import java.util.Objects;
+
 public class Evento extends Entity<IdEvento> {
 
     private Titulo titulo;
     private Razon razon;
-    private Responsable responsable;
+    private IdResponsable idResponsable;
     private CargoResponsable cargoResponsable;
     private Evidencia evidencia;
 
-    public Evento(IdEvento id) {
-        super(id);
+    public Evento(IdEvento idEvento, Razon razon, IdResponsable idResponsable, CargoResponsable cargoResponsable, Evidencia evidencia) {
+        super(idEvento);
+        this.razon = Objects.requireNonNull(razon, "La razon no debe ser null");
+        this.idResponsable = Objects.requireNonNull(idResponsable, "El IdResponsable no debe ser null");
+        this.cargoResponsable = Objects.requireNonNull(cargoResponsable, "El cargo del responsable no debe ser null");
+        this.evidencia = Objects.requireNonNull(evidencia, "La evidencia no debe ser null");
     }
 
-    public void adjuntarEvidencia(){
+    public Evento(IdEvento idEvento, Razon razon, IdResponsable idResponsable, CargoResponsable cargoResponsable) {
+        super(idEvento);
+        this.razon = Objects.requireNonNull(razon, "La razon no debe ser null");
+        this.idResponsable = Objects.requireNonNull(idResponsable, "El responsable no debe ser null");
+        this.cargoResponsable = Objects.requireNonNull(cargoResponsable, "El cargo del responsable no debe ser null");
+    }
 
+    public void adjuntarEvidencia(Evidencia evidencia){
+        this.evidencia = evidencia;
     }
 
     public Titulo titulo() {
@@ -28,8 +41,8 @@ public class Evento extends Entity<IdEvento> {
         return razon;
     }
 
-    public Responsable responsable() {
-        return responsable;
+    public IdResponsable responsable() {
+        return idResponsable;
     }
 
     public CargoResponsable cargoResponsable() {

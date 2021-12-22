@@ -1,4 +1,25 @@
 package curso.values;
 
-public class Evidencia {
+import generico.Titulo;
+
+import java.io.File;
+import java.io.Serializable;
+
+public final class Evidencia implements Serializable {
+    private final Titulo titulo;
+    private final File documento;
+
+    public Evidencia(Titulo titulo, File documento) {
+        this.titulo = titulo;
+        this.documento = documento;
+    }
+
+    public Evidencia(Titulo titulo) {
+        this.titulo = titulo;
+        this.documento = null;
+    }
+
+    public Evidencia adjuntarDocuemnto(File documento){
+        return new Evidencia(this.titulo, documento);
+    }
 }
